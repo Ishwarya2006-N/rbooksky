@@ -3,13 +3,13 @@ import axios from 'axios'
 function App() {
   const [show,setshow]=useState([])
   useEffect(()=>{
-  axios.get(' http://localhost:3007/give')
+  axios.get('https://bookjson.onrender.com/give')
   .then(data=>setshow(data.data))
   .catch(err=>console.log(err))
 
   },[show])
   const handledelete=async(id)=>{
-    axios.delete(`http://localhost:3007/give/${id}`)
+    axios.delete(`https://bookjson.onrender.com/give${id}`)
     setshow(task.filter(f=>f.id!==id));
    
   }

@@ -6,7 +6,7 @@ function View() {
   const [author,setauthor] =useState('');
   const [description,setdescription]=useState('');
   const handlecreate=async(t,a,d)=>{
-    axios.post(`http://localhost:3007/give`,{"title":t,"author":a,"description":d})
+    axios.post(`https://bookjson.onrender.com/give`,{"title":t,"author":a,"description":d})
     .then(console.log("created"))
     setBtn(false)
     settitle('')
