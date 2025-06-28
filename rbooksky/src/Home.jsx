@@ -1,6 +1,6 @@
 import React from 'react'
 import App from './App'
-import View from './view'
+import View from './View'
 function Home() {
   return (
    <div>

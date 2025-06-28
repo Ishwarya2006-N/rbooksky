@@ -4,7 +4,7 @@ import './index.css'
 import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './Home.jsx';
-import View from './view.jsx';
+import View from './View.jsx';
 
 const router=createBrowserRouter([
   {
