@@ -1,153 +1,165 @@
-/* npx json-server --watch db.json --port 3005  http://localhost:3005/give */
-*{
-  margin: 0px;
-  padding: 0px;
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-body{
-    background-color: #FFF5F5;
+
+body {
+  background-color: #FFF5F5;
+  font-family: 'Segoe UI', sans-serif;
 }
-.heading{
-    background-color: red;
-    color:black;
-    padding: 10px;
-    
+
+/* Header */
+.heading {
+  background-color: red;
+  color: black;
+  padding: 10px;
 }
-.heading h1{
-    margin-left: 20px;
+
+.heading h1 {
+  margin-left: 20px;
 }
+
+/* Popup overlay */
 .popup-overlay {
-  background-color: black;
-  opacity: 0.8;
+  background-color: rgba(0, 0, 0, 0.8);
   width: 100%;
   height: 100%;
-  position: fixed; /* Use fixed for full-screen overlay */
+  position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
-  display: flex; /* Show as flex to center content */
+  z-index: 999;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* Popup box */
 .pop-box {
-  background-color: brown;
-  width: 500px;
+  background-color: #5C4033; /* warm brown */
+  width: 90%;
+  max-width: 500px;
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1000;
+  color: white;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+/* Popup inputs */
+.pop-title,
+.pop-author,
+.pop-description {
+  width: 100%;
   padding: 10px;
+  margin-top: 10px;
+  background-color: #7B4B3A;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 16px;
+  border-bottom: 2px solid black;
+  border-radius: 4px;
+}
+
+.pop-description {
+  border: 2px solid black;
+  resize: vertical;
+  min-height: 80px;
+}
+
+.pop-title::placeholder,
+.pop-author::placeholder,
+.pop-description::placeholder {
+  color: #ddd;
+}
+
+/* Popup buttons */
+.pop-add,
+.pop-del {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-right: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.pop-add:hover,
+.pop-del:hover {
+  background-color: #333;
+}
+
+/* Floating add button */
+.add-button {
+  background-color: red;
+  padding: 15px;
+  border-radius: 50%;
+  border: none;
+  color: black;
+  font-size: 24px;
+  cursor: pointer;
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: background-color 0.2s ease;
+}
+
+.add-button:hover {
+  background-color: #ff4d4d;
+}
+
+/* Book card */
+.rbox {
+  width: 280px;
+  background-color: black;
+  padding: 15px;
   border-radius: 8px;
-  z-index: 2;
-  position: relative; /* Relative inside the overlay */
+  margin: 20px;
+  display: inline-block;
+  vertical-align: top;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
 }
-.pop-title{
-    padding: 5px;
-    margin-top: 8px;
-    background-color: brown;
-    border: none;
-    outline: none;
-    color: black;
-    font-size: large;
-    border-bottom: solid 2px black;
-    width: 400px;
 
+.rbox:hover {
+  transform: translateY(-5px);
 }
-.pop-title::placeholder{
-    color: black;
-}
-.pop-author{
-    padding: 5px;
-    margin-top: 8px;
-    background-color: brown;
-    border: none;
-    outline: none;
-    color: black;
-    font-size: large;
-    border-bottom: solid 2px black;
-    width: 400px;
-}
-.pop-author::placeholder{
-    color: black;
-}
-.pop-description{
-    padding: 5px;
-    margin-top: 8px;
-    background-color: brown;
-    /* border: none; */
-    outline: none; 
-    color: black;
-    font-size: large;
-    border: solid 2px black;
-    width: 400px;
-    display: block;
 
+.rtitle {
+  color: #d2691e; /* brownish title */
+  margin-bottom: 8px;
 }
-.pop-description::placeholder{
-    color: black;
+
+.rauthor {
+  color: #f0e68c; /* khaki author */
+  margin-bottom: 10px;
 }
-.pop-add{
-    background-color: black;
-    padding: 5px 5px;
-    border-radius: 10px; /* Rounded corners */
-    border: none;
-    color:white;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 10px;
-    /* display: block; */
-    width: 60px;
+
+.rdescription {
+  color: white;
+  font-size: 14px;
+  margin-bottom: 12px;
 }
-.pop-del{
-    background-color: black;
-    padding: 5px 5px;
-    border-radius: 10px; /* Rounded corners */
-    border: none;
-    color:white;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 10px;
-    /* display: block;  */
-    width: 60px;
-    margin-left: 80px;
+
+.resbtn {
+  background-color: #7B4B3A;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
 }
-.add-button{
-    background-color: red;
-    padding: 15px 15px;
-    border-radius: 20px; /* Rounded corners */
-    border: none;
-    color:black;
-    font-size: 16px;
-    cursor: pointer;
-    position: absolute;
-    bottom: 0px;
-    right: 25px;
-    bottom: 20px;
-}
-.rbox{
-    width: 300px;
-    background-color: black;
-    padding: 10px;
-    line-height: 23px;
-    border-radius: 5px;
-    margin-top: 40px;
-    margin-left: 20px;
-    display: inline-block;
-}
-.rbox .rtitle{
-    color: brown;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-.rbox .rauthor{
-    color:white;
-}
-.rbox .rdescription{
-    color:white;
-}
-.rbox .resbtn{
-    background-color: brown;
-    padding: 5px 5px;
-    border-radius: 10px; /* Rounded corners */
-    border: none;
-    color:black;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 5px;
+
+.resbtn:hover {
+  background-color: #5C4033;
 }
